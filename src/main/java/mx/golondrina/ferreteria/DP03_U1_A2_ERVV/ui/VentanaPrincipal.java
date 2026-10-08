@@ -34,11 +34,13 @@ public class VentanaPrincipal extends JFrame{
     private final JPanel contenido = new JPanel(tarjetas);
 
     public VentanaPrincipal(ConfigurableApplicationContext context) {
+        super(AppInfo.TITULO_VENTANA);
         this.context = context;
 
         setContentPane(contenido);
         setJMenuBar(crearMenu());
 
+        contenido.add(new PanelInicio(), VISTA_INICIO);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override

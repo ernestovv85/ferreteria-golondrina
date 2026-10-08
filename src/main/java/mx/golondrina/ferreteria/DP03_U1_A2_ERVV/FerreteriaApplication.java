@@ -23,7 +23,6 @@ public class FerreteriaApplication {
 				// Si falla, Swing usa su apariencia por defecto
 			}
 			context.getBean(VentanaPrincipal.class).setVisible(true);
-
 		});
 	}
 }
