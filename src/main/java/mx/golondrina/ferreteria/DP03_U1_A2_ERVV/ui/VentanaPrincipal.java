@@ -41,6 +41,7 @@ public class VentanaPrincipal extends JFrame{
         setJMenuBar(crearMenu());
 
         contenido.add(new PanelInicio(), VISTA_INICIO);
+        contenido.add(new PanelEstados(), VISTA_ESTADOS);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -53,6 +54,7 @@ public class VentanaPrincipal extends JFrame{
         setSize(1000, 680);
         setLocationRelativeTo(null);
     }
+
     private JMenuBar crearMenu() {
         JMenuBar barra = new JMenuBar();
 
@@ -98,5 +100,4 @@ public class VentanaPrincipal extends JFrame{
             System.exit(SpringApplication.exit(context));
         }
     }
-
 }
