@@ -1,0 +1,3 @@
+JAL|Jalisco|Gudalajara
+CDMX|Ciudad de México|Ciudad de México
+MICH|Michoacán|Morelia

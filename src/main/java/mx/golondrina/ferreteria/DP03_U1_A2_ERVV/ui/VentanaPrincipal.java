@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
+import mx.golondrina.ferreteria.DP03_U1_A2_ERVV.service.EstadoService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -33,7 +34,7 @@ public class VentanaPrincipal extends JFrame{
     private final CardLayout tarjetas = new CardLayout();
     private final JPanel contenido = new JPanel(tarjetas);
 
-    public VentanaPrincipal(ConfigurableApplicationContext context) {
+    public VentanaPrincipal(ConfigurableApplicationContext context, EstadoService estadoService) {
         super(AppInfo.TITULO_VENTANA);
         this.context = context;
 
@@ -41,7 +42,7 @@ public class VentanaPrincipal extends JFrame{
         setJMenuBar(crearMenu());
 
         contenido.add(new PanelInicio(), VISTA_INICIO);
-        contenido.add(new PanelEstados(), VISTA_ESTADOS);
+        contenido.add(new PanelEstados(estadoService, () -> tarjetas.show(contenido, VISTA_INICIO)), VISTA_ESTADOS);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -61,15 +62,10 @@ public class VentanaPrincipal extends JFrame{
         JMenu archivo = new JMenu("Archivo");
         archivo.setMnemonic(KeyEvent.VK_A);
 
-        JMenuItem inicio = new JMenuItem("Inicio");
-        inicio.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_DOWN_MASK));
-        inicio.addActionListener(e -> tarjetas.show(contenido, VISTA_INICIO));
-
         JMenuItem salir = new JMenuItem("Salir");
         salir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_DOWN_MASK));
         salir.addActionListener(e -> salir());
 
-        archivo.add(inicio);
         archivo.addSeparator();
         archivo.add(salir);
 
